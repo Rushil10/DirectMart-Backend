@@ -1,0 +1,15 @@
+---
+application:
+  name: "stobac"
+  project: "stobac"
+  organization: "QoveryCommunity"
+databases:
+- type: "MYSQL"
+  name: "test_schema"
+  version: "8.0"
+routers:
+- name: "main-stobac"
+  routes:
+  - application_name: "stobac"
+    paths:
+    - "/*"

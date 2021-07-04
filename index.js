@@ -3,7 +3,7 @@ require('dotenv').config();
 const multer = require('multer');
 const cors = require('cors');
 var mysql = require('mysql');
-const { signup, login } = require('./handlers/owner');
+const { signup, login, updateOwner } = require('./handlers/owner');
 const shopAuth = require('./util/shopAuth');
 const {notification, sendCustomNotification} = require('./handlers/notification');
 const {getShopProducts, addProduct, updateProduct, deleteProduct, getOrders, updateDeliveryStatus, updatePaymentStatus, getCurrentOrders, getOrderDetails, updateDeliveryStatusToOFD, updateDeliveryStatusToD, updateDeliveryStatusToP, getDeliveredProducts, getOutForDeliveryProducts } = require('./handlers/shop_product');

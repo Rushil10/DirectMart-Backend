@@ -117,3 +117,50 @@ exports.login = (req,res) => {
         }
     })
 }
+
+exports.updateOwner = (req,res) => {
+
+    console.log("Updating Shop ;)");
+
+    console.log(req.body);
+
+    var shop_id = req.shop.shop_id
+    var shop_name = req.body.shop_name || req.shop.shop_name; 
+    var shop_owner = req.body.shop_owner || req.shop.shop_owner;
+    var shop_contact = req.body.shop_contact || req.shop.shop_contact;
+    var shop_location = req.body.shop_location || req.shop.shop_location;
+    var shop_longitude = req.body.shop_longitude || req.shop.shop_longitude;
+    var shop_latitude = req.body.shop_latitude || req.shop.shop_latitude;
+    var shop_timing = req.body.shop_timing || req.shop.shop_timing;
+    var shop_upiId = req.body.upiId || req.shop.shop_upiId;
+    var shop_email = req.shop.shop_email;
+    var shop_password = req.body.shop_password;
+    var shop_image = req.body.shop_image || req.shop.shop_image;
+    var shop_description = req.body.shop_description
+
+    const UPDATE_SHOP = `UPDATE shop SET shop_name='${shop_name}',shop_owner='${shop_owner}',shop_contact='${shop_contact}',shop_location='${shop_location}',shop_latitude=${shop_latitude},shop_longitude=${shop_longitude},shop_timing='${shop_timing}',shop_upiId='${shop_upiId}',shop_image='${shop_image}',shop_description='${shop_description}' where shop_id=${shop_id}`
+
+    connection.query(UPDATE_SHOP,(err,result) => {
+        if(err){
+            console.log(err)
+        } else {
+            const shop = {
+                shop_id,
+                shop_email,
+                shop_name,
+                shop_owner,
+                shop_contact,
+                shop_location,
+                shop_longitude,
+                shop_latitude,
+                shop_timing,
+                shop_upiId,
+                shop_image,
+                shop_description
+            }
+            console.log(shop)
+            const token = jwt.sign(shop,process.env.ACCESS_TOKEN_SECRET)
+            return res.json({token : token})
+        }
+    })
+}

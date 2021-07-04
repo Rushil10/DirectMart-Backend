@@ -18,10 +18,10 @@ app.use(cors())
 app.use(express.json())
 
 const connection = mysql.createConnection({
-    host:'database-2.cisu5uvbda7y.ap-south-1.rds.amazonaws.com',
-    user:'admin',
-    password:'password',
-    database:'test_schema',
+    host:process.env.DB_HOST,
+    user:process.env.DB_USERNAME,
+    password:process.env.DB_PASSWORD,
+    database:process.env.DB_DATABASE,
     charset:'utf8mb4'
 })
 
@@ -93,7 +93,7 @@ app.get('/order/payment/:order_cart_id',shopAuth,updatePaymentStatus) //Update P
 app.get('/orders/delivered',shopAuth,getDeliveredProducts) // Get Delivered Products
 app.get('/orders/outForDelivery',shopAuth,getOutForDeliveryProducts)//Out For Delivery
 app.post('/shop/fcmtoken',shopAuth,storeFcmToken)
-
+app.post('/shop/update',shopAuth,updateOwner)
 //Consumer
 app.post('/consumer/address',consumerAuth,addAddress)
 app.get('/consumer/address',consumerAuth,getAllMyAddress)

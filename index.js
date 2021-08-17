@@ -94,6 +94,7 @@ app.post('/consumer/signup',consumerSignup) //Signup Consumer
 app.post('/consumer/login',consumerLogin)
 app.post('/consumer/shops',consumerAuth,getShops)
 app.get('/consumer/:shop_id/products',consumerAuth,getProducts)//getProducts of a shop
+app.get('/consumer/:shop_id/productsForDisplay',getProducts)
 //app.post('/consumer/cart/:product_id',consumerAuth,addToCart)
 app.post('/consumer/makeOrder',consumerAuth,makeOrder2)
 app.post('/consumer/makeOrderCod',consumerAuth,makeOrderCod)
@@ -119,6 +120,7 @@ app.post('/notification',notification)
 app.get('/consumer/cartItemsOfShop/:shop_id',consumerAuth,getCartItemsOfAShop)
 app.post('/consumer/fcmtoken',consumerAuth,storeFcmToken)
 app.get('/consumer/product/:product_id',consumerAuth,getSingleProductDetails)
+app.get('/consumer/productForDisplay/:product_id',getSingleProductDetails)
 
 
 app.post('/notify',sendCustomNotification)

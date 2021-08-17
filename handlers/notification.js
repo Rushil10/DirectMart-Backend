@@ -47,13 +47,19 @@ exports.sendCustomNotification = (req,res) => {
                 data:data,  
                 notification:{
                     title:title,
-                    body:info
+                    body:info,
+                    //channel_id:"testing",
                 },
-                tokens:tokens
+                android:{
+                    notification:{
+                        channel_id:"testing"
+                    }
+                },
+                token:result[0].fcm_token
             }
  
             console.log(message)
-            admin.messaging().sendMulticast(message).then(resp=>{
+            admin.messaging().send(message).then(resp=>{ 
                 console.log('send success')
                 return res.json(resp)
              }).catch(err=>{
